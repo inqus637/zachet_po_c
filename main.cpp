@@ -2,36 +2,37 @@
 #include <string>
 #include <fstream>
 #include <Windows.h>
+#include <vector>
 
 int main(void) {
     //setlocale(LC_ALL,"Russian");
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     std::string input, ask;
-    std::string all, getcontent, arr[99];
+    std::string all, getcontent;
 	int i=0, n=0;
-
+    std::vector<std::string> arr{};
     std::ifstream infile;
 	infile.open("text.txt");
 	if(infile.is_open()) {
 		while(getline(infile,getcontent)) {
-			arr[i]=getcontent;
+            arr.push_back(getcontent);
 			i++;
 		}
 	}
-    std::cout << "		ÃÃ®Ã¨Ã±Ãª Ã±Ã²Ã°Ã®ÃªÃ¨" << std::endl << std::endl;
-        std::cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¨Ã±ÃªÃ®Ã¬Ã³Ã¾ Ã±Ã²Ã°Ã®ÃªÃ³ Ã¶Ã¥Ã«Ã¨ÃªÃ®Ã¬" << std::endl;
+    std::cout << "		Ïîèñê ñòðîêè" << std::endl << std::endl;
+        std::cout << "Ââåäèòå èñêîìóþ ñòðîêó öåëèêîì" << std::endl;
         getline(std::cin, input);
-		for(i=0;i<99;i++) {
-			if(arr[i].find(input) != std::string::npos) { //arr[i] == input Ã³Ã±Ã«Ã®Ã¢Ã¨Ã¥ Ã¤Ã«Ã¿ Ã¯Ã®Ã¨Ã±ÃªÃ  Ã§Ã­Ã Ã·Ã¥Ã­Ã¨Ã¿ Ã¯Ã® Ã±Ã²Ã°Ã®ÃªÃ¥ Ã¶Ã¥Ã«Ã¨ÃªÃ®Ã¬ Ã  Ã­Ã¥ Ã¯Ã® Ã¥Ã¥ Ã·Ã Ã±Ã²Ã¨
+		for(i=0;i<arr.size();i++) {
+			if(arr[i].find(input) != std::string::npos) { //arr[i] == input óñëîâèå äëÿ ïîèñêà çíà÷åíèÿ ïî ñòðîêå öåëèêîì à íå ïî åå ÷àñòè
 				n++;
-                std::cout << "ÃˆÃ±ÃªÃ®Ã¬Ã»Ã© Ã²Ã¥ÃªÃ±Ã² Ã­Ã Ã©Ã¤Ã¥Ã­ Ã¢ Ã±Ã²Ã°Ã®ÃªÃ¥ Ã¯Ã®Ã¤ Ã­Ã®Ã¬Ã¥Ã°Ã®Ã¬ : " << i+1 << std::endl;
+                std::cout << "Èñêîìûé òåêñò íàéäåí â ñòðîêå : " << i+1 << std::endl;
 			}
 		}
         if(n == 0) {
-            std::cout << "Ã¨Ã±ÃªÃ®Ã¬Ã®Ã© Ã±Ã²Ã°Ã®ÃªÃ¨ Ã¢ Ã´Ã Ã©Ã«Ã¥ Ã­Ã¥Ã² =( " << std::endl;
+            std::cout << "Èñêîìûé åêñò â ôàéëå íå íàäéåí =( " << std::endl;
         }
-        getline(std::cin, input);
+    getline(std::cin, input);
 
 
 	return 0;
